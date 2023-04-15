@@ -1,0 +1,4 @@
+<div #dnForm></div>
+<button (click)="addDynamicComponent()">Dynamic component</button>
+<button (click)="onLoad()">Dynamic module</button>
+<button *ngIf="moduleLoaded" (click)="gotoLazyRoute()">Go to test</button>
