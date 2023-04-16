@@ -1,11 +1,22 @@
+<p>Demo dynamic component</p>
 <div #dnForm></div>
-<br />
 <button (click)="addDynamicComponent()">Dynamic component</button>
 <button (click)="clear()">Clear</button>
-<br />
+<hr />
+<p>Demo manually lazy load module</p>
 <button (click)="onLoad()">Dynamic module</button>
 <button *ngIf="moduleLoaded" (click)="gotoLazyRoute()">Go to test</button>
-
+<hr />
+<p>Demo dynamic form - viewContainerRef</p>
+Config: {{ dynamicFormConfig | json }}
 <div [formGroup]="demoForm">
   <div #dnDemoForm></div>
+</div>
+Form value: {{ demoForm.value | json }}
+<hr />
+<p>Demo dynamic form - switch case</p>
+<div [formGroup]="demoForm2">
+  <div *ngFor="let config of dynamicFormConfig" [ngSwitch]="config.fieldType">
+    <input type="text" pInputText [formControlName]="config.key" />
+  </div>
 </div>

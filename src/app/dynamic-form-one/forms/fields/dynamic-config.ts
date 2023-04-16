@@ -4,4 +4,5 @@ export type DynamicConfig = {
   key: string;
   fieldType: FieldType;
   prop: { [key: string]: any };
+  validates?: { [key: string]: boolean };
 };

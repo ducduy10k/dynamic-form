@@ -27,12 +27,21 @@ export class DynamicFormOneComponent implements OnInit {
   dnDemoForm!: ViewContainerRef;
   moduleLoaded: boolean = false;
   demoForm: FormGroup;
+  demoForm2: FormGroup;
+  fieldType = FieldType;
   dynamicFormConfig: DynamicConfig[] = [
     {
       fieldType: FieldType.Input,
       key: 'name',
       prop: {
-        placeholder: 'Test',
+        placeholder: 'Name',
+      },
+    },
+    {
+      fieldType: FieldType.Input,
+      key: 'email',
+      prop: {
+        placeholder: 'Email',
       },
     },
   ];
@@ -44,12 +53,14 @@ export class DynamicFormOneComponent implements OnInit {
     private dynamicComponentService: DynamicComponentService
   ) {
     this.demoForm = new FormGroup({});
+    this.demoForm2 = new FormGroup({});
   }
 
   ngOnInit(): void {
     for (let fieldConfig of this.dynamicFormConfig) {
       const fc = new FormControl();
       this.demoForm.addControl(fieldConfig.key, fc);
+      this.demoForm2.addControl(fieldConfig.key, fc);
       this.dynamicComponentService.addDynamicComponent(
         this.dnDemoForm,
         fieldConfig,
@@ -58,6 +69,9 @@ export class DynamicFormOneComponent implements OnInit {
     }
     console.log(this.demoForm);
     this.demoForm.valueChanges.subscribe((data) => {
+      console.log('data: ', data);
+    });
+    this.demoForm2.valueChanges.subscribe((data) => {
       console.log('data: ', data);
     });
   }
