@@ -1,4 +1,11 @@
 <div #dnForm></div>
+<br />
 <button (click)="addDynamicComponent()">Dynamic component</button>
+<button (click)="clear()">Clear</button>
+<br />
 <button (click)="onLoad()">Dynamic module</button>
 <button *ngIf="moduleLoaded" (click)="gotoLazyRoute()">Go to test</button>
+
+<div [formGroup]="demoForm">
+  <div #dnDemoForm></div>
+</div>
